@@ -1,0 +1,26 @@
+%!
+% Przypomnienie RGB
+% Red =(255,0,0)
+% Blue = (0,0,255)
+% Green = (0 , 128, 0)
+
+
+% jednostka = 1 mm
+72 25.4 div dup scale
+
+1 setlinejoin       %zaokraglony naroznik
+
+1.25 2.5 translate   %zmienia pozycje ukladu wspolrzednych
+0 0 moveto           %ustawia na zrodlo
+50 0 lineto           %tworzy pierwsze linii
+50 0 translate        %zmienia pozycje na aktualny punkt
+120 rotate           %rotuje katy 120 stopni przeciwnie do ruchu wskazowek zegara
+50 0 lineto           %tworzy druga czesc linii
+closepath            %tworzy ostatnia czesc linii
+gsave                %zapisuje stan grafiki
+1 0 0 setrgbcolor
+stroke               %obrys utworzonego trojkata
+grestore             %przywroc zapisany stan grafiki
+1 1 0 setrgbcolor	   %ustaw kolor na zolty
+fill                 %wypelnienie wewnatrz sciezki
+showpage             %widok

@@ -1,0 +1,50 @@
+%!PS
+%% Kwadraty
+
+/inch {72 mul} def      % inches->points (1/72 inch)
+
+% jednostka = 1 mm oznacza: 72 25.4 div dup scale - dla wygody
+% uzylem inch - bo tak czesto wystepuje w przykladach i dokumentacjach
+
+%Kwadrat Otwarty
+/Kwadrat1{
+          newpath                 % Nowa sciezka
+          1 inch 1 inch moveto    % cal z lewego dolu
+          2 inch 1 inch lineto    % czesc dolna
+          2 inch 2 inch lineto    % czesc prawa
+          1 inch 2 inch lineto    % gora
+          1 inch 1 inch lineto    % lewa strona
+          stroke                  % Rysuje Kwadrat
+} def
+
+%Kwadrat Zamkniety
+
+/Kwadrat2{
+          newpath                 % Nowa sciezka
+          1 inch 1 inch moveto    % cal z lewego dolu
+          2 inch 1 inch lineto    % czesc dolna
+          2 inch 2 inch lineto    % czesc prawa
+          1 inch 2 inch lineto    % gora
+          1 inch 1 inch lineto    % lewa strona
+          stroke                  % Rysuje Kwadrat
+} def
+
+
+1 0.5 1 setrgbcolor
+10 setlinewidth
+Kwadrat1
+0 0 0 setrgbcolor
+2 setlinewidth
+Kwadrat1              %drugi kwadrat inna linia - drugi obrys
+
+0 100 translate
+
+% Kwadrat Zamkniety
+1 0.5 1 setrgbcolor
+10 setlinewidth
+Kwadrat2
+0 0 0 setrgbcolor
+2 setlinewidth
+Kwadrat2              %drugi kwadrat inna linia - drugi obrys
+
+showpage                % Pokaz Strone
