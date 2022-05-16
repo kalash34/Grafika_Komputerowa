@@ -1,0 +1,32 @@
+%!PS
+
+
+
+%% Trojkat przez arcto
+
+
+
+
+% x-coord y-coord r ang1 ang2 arc - argumenty procedury arcto
+
+/Triangle{
+  newpath
+  3 setlinewidth
+  0 0 moveto
+  288 36 144 216 36 arcto         % [288,36] ,r=144, ang1=216, ang2=36
+  144 216 36 36 36 arcto
+  0 36 108 36 36 arcto
+  closepath
+  gsave
+  stroke
+  grestore
+  1 1 0 setrgbcolor	              %ustaw kolor na zolty
+  fill                            %wypelnienie wewnatrz sciezki
+  %12 {pop} repeat
+} def
+
+
+
+Triangle
+
+showpage

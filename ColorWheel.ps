@@ -1,0 +1,48 @@
+
+%!PS
+
+%Skrypt Rysujacy Kolo barw
+
+
+%Ustawiamy sobie zmiane jasnosci na .01
+
+
+/brightnessstep .01 def
+
+/pozycja {
+	150 630 moveto
+  	150 630 100 br mul
+	} def
+
+/ColorWheel {
+	/degstep exch def															% operator exch - zamienia elementy na stosie
+	1 brightnessstep neg brightnessstep {
+		/br exch def																%Zmiana jasnosci
+		0 degstep 360 {															%Petla postepujaca o wielkosc wyliczonego kata
+			/deg exch def
+  			deg 360 div br 1 sethsbcolor						%dla podanych argumentow ustawia kolor (h,s,b), gdzie h,s,b sa w [0,1]
+			pozycja																	  %makro ustawienia pozycji
+			deg dup degstep add arc closepath fill
+		} for
+	} for
+} def
+
+1 ColorWheel
+
+/pozycja {
+	450 630 moveto
+  	450 630 100 br mul
+	} def
+
+8 ColorWheel				%Kolo dla 8 barw
+
+
+/pozycja {
+	450 330 moveto
+  	450 330 100 br mul
+	} def
+
+25 ColorWheel				%Kolo dla 25 barw
+
+
+showpage

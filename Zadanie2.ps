@@ -1,0 +1,82 @@
+%!PS
+
+% Zeby Narysowac gwiazde 5 punktowa musimy zlokalizowac przekroj kola
+% Wyobrazamy sobie prosta Prechodzaca przez jego srodek: "rysujemy" ja przekrajajac kolo
+% Musimy wyznaczyc katy dla punktow gwiazdy
+% Kolo ma 360 stopni
+% Kazdy punkt to 360/5 = 72 stopnie
+
+% Nasza Linia Prosta oznacza 0 stopni
+% Nastepny punkt oznaczamy na 72 stopnie, kolejny 144 stopnie itd
+%
+
+
+%Nie rysuje gwiazd w (0,0) bo jak rysuje sie w 4 krokach to ucina fragment obrazka..
+
+/Starside{
+    72 0 lineto               % linia do sciezki
+    currentpoint translate    % currentpoint zwraca aktualny punkt
+    -144 rotate} def          % rotuj uklad wspolrzednych o 144 stopnie
+
+/PentaStar                         % Stos x, y
+{
+  newpath                           % Nowa Sciezka
+  moveto                            % Ustawiamy polozenie dla argumentow
+  currentpoint translate            % Przenosimy sie w podane miejsce
+  4 {Starside} repeat               % Wywoujemy Bok gwiazdy 4 razy
+  closepath                         %Zamykamy sciezke
+  gsave                             % Zapisujemy szkielet
+  .5 setgray fill                   %Ustawiamy szary odcien i wypelniamy ksztalt
+  grestore
+  stroke
+  closepath
+} def
+
+
+/Circle{
+      newpath
+      236 188 40 0 360 arc
+      closepath
+      stroke
+} def
+
+
+
+
+%To samo ale dla eofill
+% Eofill wykorzystuje regule even-odd dla sciezek okreslajaca
+% Jak bedzie wypelniany ksztalt z wieloma zamknietymi obrysami w zaleznosci od obszaru bedacego czescia wspolna ksztaltow.
+% Niepokrywajace sie ksztalty zostana wypelnione, a te ktore sie nakladaja nie wypelnia sie kolorem
+
+/PentaStar2                         % Stos x, y
+{
+  newpath                           % Nowa Sciezka
+  moveto                            % Ustawiamy polozenie dla argumentow
+  currentpoint translate            % Przenosimy sie w podane miejsce
+  4 {Starside} repeat               % Wywoujemy Bok gwiazdy 4 razy
+  closepath                         %Zamykamy sciezke
+  gsave                             % Zapisujemy szkielet
+  .5 setgray eofill                 %Ustawiamy szary odcien i wypelniamy ksztalt
+  grestore
+  stroke
+  closepath
+} def
+
+
+/Circle2{
+      newpath
+      286 238 40 0 360 arc
+      closepath
+      stroke
+} def
+
+
+
+Circle
+200 200 PentaStar
+
+%Circle2
+%400 400 PentaStar2
+%
+
+showpage
