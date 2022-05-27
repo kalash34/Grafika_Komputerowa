@@ -1,0 +1,90 @@
+%!PS
+
+%% Ustawiamy rozmiar czcionki, rodzaj czcionki, szerokosc linii, kolor (h, s , v)
+
+
+/fontsize 65 def
+/font { /Times-Bold fontsize selectfont } def
+/szerokosc { 3 setlinewidth } def
+
+
+%% Rysowanie prostokata z zaokr naroznikami
+%% Uzywamy operatora arcto
+%%  x1 y1 x2 y2 r arcto , ktory zwraca:  xt1 yt1 xt2 yt2 czyli:
+%% wspolrzedne punktu stycznego  (xt1, yt1) and (xt2, yt2) dla luku o promieniu r rysowanego miedzy
+%% punktami (x1, y1) oraz (x2, y2)
+
+/R.frame {
+    newpath                              % Usuniecie wszystkich poprzednich sciezek
+    szerokosc                            % wywolanie szerokosci
+    0 radius moveto                      % current_point -> (0,radius)
+    0 height width height radius arcto   % Rysujemy punkty styczne zeby obrysowac ramke P1=(0,height) , P2=(width, height)
+    width height width 0 radius arcto    % jw.  P1=(width,height) , P2=(width, 0) => Pkt_styczny= (width_t1, height_t1) and (width_t2, 0_t2)
+    width 0 0 0 radius arcto             % jw.  P1=(width, 0), P2=(0, 0)  =>  ...
+    0 0 0 height radius arcto
+    17 {pop} repeat                      % Petla 17 razy zdejmujaca ze stosu - czyli powtarzamy 17 razy dla lepszego efektu
+    closepath
+} def
+
+/marginM {
+    font                % Wybrana czcionka
+    15 20 moveto        % cuurent_point of current_path -> given_point
+    (M) stringwidth     % Margines na podstawie wymiarow litery M
+    pop
+} def
+
+%% Tekst w ramce
+%% Wykorzystujemy operator charpath:
+%% string bool charpath
+%% Ustala zarysy sciezki znakow ktore uda sie
+%% jesli string bedzie pokazany w current_point za pomoca show
+%% Natomiast operator show: rysuje danego stringa w current point
+%% I konczy na koncu
+%% pathbox (na podstawie dokumentacji):
+
+%% Returns the bounding box of the current path in the current user coordinate system.
+%% The results are four real numbers: lower-left x, lower-left y, upper-right x, and upper-right y.
+%% These coordinates describe a rectangle, oriented with its sides parallel to the x and y axes in user space,
+%% that completely encloses all elements of the path. If the current path is empty, pathbbox executes the error nocurrentpoint.
+
+%% czyli pathbox bierze nam punkty na przekatnej prostokata
+
+/FText {
+    /radius exch def /text exch def
+    marginM
+    font text show
+    text false charpath
+    pathbbox
+    /upper-y exch def /right-x exch def           % wspolrzedne prostokata wokol tekstu
+    /lower-y exch def /left-x exch def            %
+    /width right-x left-x sub marginM add def
+    /height upper-y lower-y sub fontsize add def
+    R.frame
+} def
+
+/PremiumText {
+    /h exch def /s exch def /v exch def
+    FText
+    gsave
+    h 0.1 v sethsbcolor
+    fill
+    grestore
+    h s v sethsbcolor
+    marginM
+    font text show pop            %% Wywolujemy show dla font i text, zdjemujemy ze stosu
+
+} def
+
+150 100 translate
+(Miami) 20 FText 	stroke
+
+0 125 translate
+(Las Vegas) 10 FText stroke
+
+0 125 translate
+(Los Angeles) 35 1 1 1 PremiumText stroke
+
+0 200 translate
+(Money) 0 1 1 0.7 PremiumText stroke
+
+showpage
