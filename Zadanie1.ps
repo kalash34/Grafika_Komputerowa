@@ -12,15 +12,15 @@
 /scale 72 25.4 div def
 /Trk {
     2 mul
+    scale mul           % skaluje przestrzen uzytkownika
+    /r exch def         % exch wymienia liczbe miejscami - wiec otrzymamy promien - nasza zmienna
     scale mul
-    /r exch def
-    scale mul
-    /a exch def
+    /a exch def         % exch wymienia liczbe miejscami - otrzymamy bok trojkata - nasza zmienna
     newpath
-    r 0 translate
+    r 0 translate       %zmienia pozycje w ukladzie wspolrzednych [r, 0]
     0 0 moveto
     3 {
-    a 0 translate
+    a 0 translate       %zmienia pozycje w ukladzie wspolrzednych [a, 0]
     0 0 lineto
     r
     0
