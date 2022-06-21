@@ -1,0 +1,54 @@
+%!PS
+
+/closedpoint {
+1 0 0 setrgbcolor
+3 0 360 arc fill
+} def
+
+
+/openpoint {
+0 0 0 setrgbcolor
+3 0 360 arc fill
+} def
+
+/Bezier {
+	/Pkt3y exch def /Pkt3x exch def
+	/Pkt2y exch def /Pkt2x exch def
+	/Pkt1y exch def /Pkt1x exch def
+	currentpoint /x exch def /y exch def
+
+
+	x y moveto
+	Pkt1x Pkt1y Pkt2x Pkt2y Pkt3x Pkt3y curveto
+	0 1 0 setrgbcolor
+    gsave
+
+    newpath
+
+	x y closedpoint Pkt3x Pkt3y closedpoint
+	Pkt1x Pkt1y openpoint Pkt2x Pkt2y openpoint
+
+  	[2 2] 0 setdash
+	x y moveto Pkt1x Pkt1y lineto
+	Pkt2x Pkt2y moveto Pkt3x Pkt3y lineto
+	stroke
+	grestore
+
+
+} def
+
+0 0 translate
+100 100 moveto
+
+
+220 50 200 100 200 100 Bezier
+
+20 200 300 250 200 100 Bezier
+
+200 300 300 200 500 350 Bezier
+
+650 600 350 300 500 350 Bezier
+
+stroke
+
+showpage
