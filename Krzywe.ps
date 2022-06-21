@@ -1,77 +1,34 @@
-%!
-%% Krzywe
+%!PS
 
-/Wedge {
-        newpath
-        100 0 moveto
-        0 0 lineto
-        100 50 lineto
-        1 0.5 1 setrgbcolor
-        5 setlinewidth
-        stroke
-} def
-/Wedge2 {
-        newpath
-        100 0 moveto
-        0 0 lineto
-        100 50 lineto
-        0 0 0 setrgbcolor
-        1 setlinewidth
-        stroke
-} def
 
-10 setlinewidth
-0 setlinejoin
-100 200 translate
-Wedge
-Wedge2
+0 0 translate
+100 100 moveto
 
-0 setlinejoin
-1 setlinecap
-0 70 translate
-Wedge
-Wedge2
+%% curveto rysuje krzywa z currentpoint'a do P3x P3y
+%% P1x P1y P2x P2y P3x P3y curveto
 
-0 setlinejoin
-2 setlinecap
-0 70 translate
-Wedge
-Wedge2
+%% Pierwsze dwa argumenty od lewej to wspolrzedne punktow kontrolnych a ostatni
+%% to koniec krzywej ( Poczatek to currentpoint )
 
-1 setlinejoin
-0 setlinecap
-0 70 translate
-Wedge
-Wedge2
+220 140 200 250 280 100 curveto
 
-1 setlinejoin
-1 setlinecap
-0 70 translate
-Wedge
-Wedge2
+220 -50 300 -100 400 100 curveto
 
-1 setlinejoin
-2 setlinecap
-0 70 translate
-Wedge
-Wedge2
+200 100 300 200 500 200 curveto
 
-2 setlinejoin
-0 setlinecap
-0 70 translate
-Wedge
-Wedge2
 
-2 setlinejoin
-1 setlinecap
-0 70 translate
-Wedge
-Wedge2
+200 200 350 300 700 300 curveto
 
-2 setlinejoin
-2 setlinecap
-0 70 translate
-Wedge
-Wedge2
+stroke
+
+%%150 300 translate
+%%100 100 200 25 330 110 109 174 arcto
+%%						  P3x P3y
+
+%%-200 0 translate
+%%100 100 250 163 23 171 109 74 arcto
+%%stroke
+
+
 
 showpage
