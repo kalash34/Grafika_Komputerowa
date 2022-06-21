@@ -1,0 +1,36 @@
+%!PS
+
+<<
+/PatternType 1
+/PaintType 1
+/TilingType 1
+/BBox [#rozmiar neg #rozmiar neg #rozmiar #rozmiar]
+/XStep #rozmiar 2.5 mul
+/YStep #rozmiar 2.5 mul
+/PaintProc
+{
+#rozmiar dup scale
+#PentaStar
+1 1 0 setrgbcolor
+fill
+1 #rozmiar div dup scale
+}
+>>
+
+matrix
+makepattern
+/#pattern exch def
+
+/Times-New-Roman-Bold #fontsize selectfont
+
+0 0 moveto
+#r #g #b setrgbcolor
+0 #yoffset (Blue) ashow
+0 #yoffset neg ( jeans) ashow
+
+#pattern setpattern
+0 0 moveto
+0 #yoffset (Blue) ashow
+0 #yoffset neg ( jeans) ashow
+
+showpage
